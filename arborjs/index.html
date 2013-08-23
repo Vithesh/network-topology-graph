@@ -1,0 +1,66 @@
+<html>
+    <head>
+        <script language="javascript" type="text/javascript"  src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+        <script language="javascript" type="text/javascript" src="js/lib/arbor.js" ></script>
+        <script language="javascript" type="text/javascript" src="js/lib/graphics.js" ></script>
+        <script language="javascript" type="text/javascript" src="js/renderer.js" ></script>
+        <script language="javascript" type="text/javascript" src="js/fixtures/test_data.js" ></script>
+    </head>
+    <body>
+      <canvas id="viewport" width="800" height="600"></canvas>
+      <script language="javascript" type="text/javascript">
+          $(document).ready(function(){
+              $(document).mousemove(function(e){
+                  window.mouseXPos = e.pageX;
+                  window.mouseYPos = e.pageY;
+              });
+          });
+
+          var data = parseResult(window.result);
+
+          // Initialise arbor
+          var sys = arbor.ParticleSystem()
+          sys.parameters({stiffness:900, repulsion:2000, friction: 1, gravity:false, dt:0.0012 , fps :55 ,dt: 0.0001 ,precision:0.6})
+          sys.renderer = Renderer("#viewport");
+          sys.graft(data);
+
+          function parseResult(result){
+
+              var data = { nodes:{}, edges:{}  };
+              var nodesCount = 0;
+
+              for(var eachProcess in result)
+                for(var eachConIndex in result[eachProcess]) {
+                    var con = result[eachProcess][eachConIndex];
+                    var ip1 = con.local_addr , ip2 = con.remote_addr;
+
+
+                    // push the ip1 obj to 'nodes' obj
+                    if(!data.nodes[ip1]) {
+                        data.nodes[ip1] = {};
+                        data.nodes[ip1]['label'] = ip1;
+                        nodesCount++;
+                    }
+
+                    // push the ip2 obj to 'nodes' obj
+                    if(!data.nodes[ip2]) {
+                        data.nodes[ip2] = {};
+                        data.nodes[ip2]['label'] = ip2;
+                        nodesCount++;
+                    }
+
+                    if(!data.edges[ip1])
+                        data.edges[ip1] = {};
+                    data.edges[ip1][ip2] = {};
+
+                }
+
+              console.log( 'total nodes: ' + nodesCount);
+              return data;
+          }
+
+
+
+      </script>
+    </body>
+</html>
