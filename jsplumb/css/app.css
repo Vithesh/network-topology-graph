@@ -1,0 +1,87 @@
+svg {
+    font: 14px sans-serif;
+}
+
+.graph{
+    margin-left: 12%;
+}
+
+.note{
+    font-family: "Lucida Console", Monaco, monospace;
+    color: #a2a2a2;
+    margin-left: auto;
+    margin-right: auto;
+    width:50%;
+}
+
+.nodeDetails {
+    overflow: hidden;
+    max-height: 280px;
+    margin-top: 2%;
+    border: 1px solid #a2a2a2;
+}
+
+.link {
+    stroke: teal;
+    stroke-opacity: .6;
+    stroke-width: 1;
+}
+
+g.child rect {
+    fill: #d9edf7;
+    stroke: #bce8f1;
+
+}
+
+.detailTable{
+    text-align:center;
+    border: 1px solid #a2a2a2;
+    border-collapse: collapse;
+}
+
+thead.fixedHeader tr {
+    display: block
+}
+
+thead.fixedHeader th {
+    padding: 4px 3px;
+    border: 1px solid #a2a2a2;
+}
+
+tbody.scrollContent {
+    display: block;
+    height: 200px;
+    overflow: auto;
+    width: 100%
+}
+
+tbody.scrollContent td {
+    padding: 2px 3px 3px 4px;
+    border-left: none;
+    border-right: 1px solid #a2a2a2;
+    border-top: 1px solid #a2a2a2;
+    border-bottom: 1px solid #a2a2a2;
+}
+
+rect {
+    stroke: #bdbdbd;
+    stroke-width: 1px;
+    fill: none;
+}
+
+.label {
+    font-size: 11px;
+    font-family: monospace;
+}
+
+.tableLabel{
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 1%;
+    margin-top: 1%;
+}
+
+i.icon-remove-circle{
+    float:right;
+    margin-right: 1%;
+}

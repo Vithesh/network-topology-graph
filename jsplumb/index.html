@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Network Graph</title>
+    <link rel="stylesheet" href="css/appStyles.css" />
+    <script  src="js/libs/jquery.min.js"></script>
+    <script type="text/javascript" src="js/libs/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="js/libs/jquery.jsPlumb-1.5.1-min.js"></script>
+    <script  src="js/libs/d3.v3.min.js"></script>
+    <script  src="fixtures/test_data.js"></script>
+    <script>
+        $(document).ready(function () {
+            console.log('start '+ new Date());
+            var colorFunction = function (row) {
+                if (row.so_state === "ESTABLISHED") {
+                    return "#dff0d8";
+                }
+                return "#f2dede";
+            };
+
+            var obj = {
+                data: window.result,
+                container: "graphContainer",
+                link1: "local_addr",
+                link2: "remote_addr",
+                group: "proc_name",
+                options: {
+                    colorBy: colorFunction,
+                    columns: ["local_port", "proc_id", "remote_addr", "remote_port"]
+                }
+            }
+            app.graphPlotter.plot(obj);
+
+        });
+    </script>
+</head>
+<body>
+<div id="graphContainer" class='graph-container'></div>
+    <script  src="js/app.js"></script>
+<script>
+
+</script>
+</body>
+</html>
